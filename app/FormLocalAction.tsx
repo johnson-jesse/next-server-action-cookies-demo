@@ -1,5 +1,6 @@
 import React from "react";
 import { cookies } from "next/headers";
+import { commonAction } from "./Action.util";
 
 export function FormLocalAction() {
   async function formLocalAction() {
@@ -18,6 +19,11 @@ export function FormLocalAction() {
     });
   }
 
+  async function formCommonAction() {
+    'use server';
+    return commonAction();
+  }
+
   return (
     <fieldset className="border-2 border-gray-500 p-3">
       <legend>Cookies Via Form Local Action</legend>
@@ -26,7 +32,15 @@ export function FormLocalAction() {
           className="p-2 m-2 border-2 border-gray-500 hover:border-gray-900"
           type="submit"
         >
-          Smash it
+          Smash it local
+        </button>
+      </form>
+      <form action={formCommonAction}>
+        <button
+          className="p-2 m-2 border-2 border-gray-500 hover:border-gray-900"
+          type="submit"
+        >
+          Smash it common
         </button>
       </form>
       Check Application Cookies

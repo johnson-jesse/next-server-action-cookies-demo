@@ -29,3 +29,17 @@ export async function formAction() {
     actionNow: Date.now(),
   });
 }
+
+export async function commonAction() {
+
+  // @ts-ignore
+  cookies().set({
+    name: "commonAction",
+    value: "I was set via some mechanism calling a server action",
+    httpOnly: true,
+  });
+
+  return Promise.resolve({
+    commonNow: Date.now(),
+  });
+}
